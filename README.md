@@ -59,6 +59,7 @@ matplotlib
 seaborn
 scikit-learn
 -e .
+```
 
 8. **Create `src` Folder:** Create a "src" folder in your project directory. This folder will contain your project's source code.
 
