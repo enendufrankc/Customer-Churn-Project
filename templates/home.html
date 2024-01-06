@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #e8eff1; /* Light blue background */
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .login {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+                max-width: 500px; /* Max width for larger screens */
+                width: 100%; /* Full width on smaller screens */
+            }
+            h1 {
+                color: #333;
+                text-align: center;
+            }
+            .form-label {
+                display: block;
+                margin-bottom: 5px;
+                color: #555; /* Darker label color */
+            }
+            .form-control {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc; /* Light grey border */
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            .btn {
+                width: 100%;
+                padding: 10px;
+                background-color: #28a745; /* Green background */
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+            }
+            .btn:hover {
+                background-color: #218838; /* Darker green on hover */
+            }
+            /* Responsive Design for Desktops */
+            @media (min-width: 768px) {
+                .login {
+                    margin: 20px;
+                }
+            }
+        </style>
+    </head>
+<body>
+    <div class="login">
+       <h1>Loan Application Form</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Loan Application</legend>
+        </h1>
+        <!-- Numerical and Float Inputs -->
+        <div class="mb-3">
+            <label class="form-label">Income</label>
+            <input class="form-control" type="number" name="income" placeholder="Enter your Income" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Debt with Other Lenders</label>
+            <input class="form-control" type="number" name="debt_with_other_lenders" placeholder="Enter your Debt with Other Lenders" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Credit Score</label>
+            <input class="form-control" type="number" name="credit_score" placeholder="Enter your Credit Score" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Has Previous Defaults with Other Lenders</label>
+            <input class="form-control" type="checkbox" name="has_previous_defaults_other_lenders" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Number of Remittances in Previous 12 Months</label>
+            <input class="form-control" type="number" name="num_remittances_prev_12_mth" placeholder="Enter Number of Remittances in Previous 12 Months" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Remittance Amount in Previous 12 Months</label>
+            <input class="form-control" type="number" name="remittance_amt_prev_12_mth" placeholder="Enter Remittance Amount in Previous 12 Months" required />
+        </div>
+
+        <!-- Categorical Input -->
+        <div class="mb-3">
+            <label class="form-label">Main Remittance Corridor</label>
+            <select class="form-control" name="main_remittance_corridor" required>
+                <option selected disabled value="">Select Main Remittance Corridor</option>
+                <option value="AE_IN">AE_IN</option>
+                <option value="AE_PK">AE_PK</option>
+                <option value="AE_PH">AE_PH</option>
+            </select>
+        </div>
+
+        <!-- Binary Inputs (Opened Campaign) -->
+        <div class="mb-3">
+            <label class="form-label">Opened Campaign 1</label>
+            <input class="form-control" type="checkbox" name="opened_campaign_1" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Opened Campaign 2</label>
+            <input class="form-control" type="checkbox" name="opened_campaign_2" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Opened Campaign 3</label>
+            <input class="form-control" type="checkbox" name="opened_campaign_3" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Opened Campaign 4</label>
+            <input class="form-control" type="checkbox" name="opened_campaign_4" />
+        </div>
+
+        <!-- Tenure Years -->
+        <div class="mb-3">
+            <label class="form-label">Tenure Years</label>
+            <input class="form-control" type="number" name="tenure_years" placeholder="Enter Tenure Years" required />
+        </div>
+
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Submit Application" />
+        </div>
+    </form>
+    <h2>
+       THE prediction is {{results}}
+    </h2>
+   <body>
+</html>
